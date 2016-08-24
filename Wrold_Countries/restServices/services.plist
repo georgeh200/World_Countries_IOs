@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<string>v1</string>
+	<key>host</key>
+	<string>https://restcountries.eu/rest</string>
+	<key>load-country-by-code</key>
+	<dict>
+		<key>type</key>
+		<string>GET</string>
+		<key>link</key>
+		<string>/alpha?codes=</string>
+	</dict>
+	<key>all-countries</key>
+	<dict>
+		<key>type</key>
+		<string>GET</string>
+		<key>link</key>
+		<string>/all</string>
+	</dict>
+</dict>
+</plist>
