@@ -16,6 +16,7 @@
 
 @property(strong,nonatomic)NSMutableArray* arrCountries;
 @property(strong,nonatomic)NSMutableArray* arrFilteredCountries;
+-(void)getFromCash:(void (^)())successCallback;
 -(void)getAllCountries:(void (^)())success
            withFailure:(void (^)(NSInteger statusCode))failure;
 

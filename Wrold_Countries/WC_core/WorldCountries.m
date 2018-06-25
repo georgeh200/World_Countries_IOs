@@ -46,33 +46,36 @@
     return self.arrFilteredCountries.count;
 }
 
--(void)getAllCountries:(void (^)())successCallback
-withFailure:(void (^)(NSInteger statusCode))failureCallback
+-(void)getFromCash:(void (^)())successCallback
 {
-    
-    BOOL cached=NO;
     NSArray* arr=[WCCountry listCountries];
     
     if(arr.count>0)
     {
-        cached=YES;
+       
         [self setCountriesFromCash:arr];
         successCallback();
-        
     }
+}
+
+-(void)getAllCountries:(void (^)())successCallback
+withFailure:(void (^)(NSInteger statusCode))failureCallback
+{
+    
+   
   
     [[WCServices sharedInstance]getAllcountries:^(id json) {
         
         [self parseCountriesJson:json];
         successCallback();
-        
-        [self performSelectorInBackground:@selector(saveCountriesFromJson:) withObject:json];
+        [self performSelectorOnMainThread:@selector(saveCountriesFromJson:) withObject:json waitUntilDone:NO];
+       
 
         
         
     } withFailure:^(NSInteger statusCode) {
         
-        if(!cached)
+      //  if(!cached)
         failureCallback(statusCode);
     }];
 }

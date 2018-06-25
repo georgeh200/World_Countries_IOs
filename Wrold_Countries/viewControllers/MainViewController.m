@@ -21,6 +21,7 @@
    
     [super viewDidLoad];
     
+    
     self.txtSearch.delegate=self;
     self.worldCountries=[WorldCountries sharedInstance];
     
@@ -32,8 +33,12 @@
     
     self.vLoading.transform = CGAffineTransformMakeScale(1.5, 1.5);
     [self.vLoading startAnimating];
+    if(true)
+        return;
     
-   
+    [self.worldCountries getFromCash:^{
+        [self countriesLoadSuccess];
+    }];
 
  [self performSelectorInBackground:@selector(fetchCountries) withObject:nil];
     
