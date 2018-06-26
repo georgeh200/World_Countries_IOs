@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     
-    self.txtSearch.delegate=self;
+   
     self.worldCountries=[WorldCountries sharedInstance];
     
     
@@ -33,8 +33,7 @@
     
     self.vLoading.transform = CGAffineTransformMakeScale(1.5, 1.5);
     [self.vLoading startAnimating];
-    if(true)
-        return;
+   
     
     [self.worldCountries getFromCash:^{
         [self countriesLoadSuccess];
@@ -127,14 +126,7 @@
 
 
 
-- (void)searchBar:(UISearchBar *)searchBar
-    textDidChange:(NSString *)searchText
-{
-    
-    
-    [self.worldCountries filterCountries:[searchText lowercaseString]];
-    [self.tblCountries reloadData];
-}
+
 
 
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "WCCountry.h"
-@interface VCountryCell : UITableViewCell
+@interface VCountryCell : UICollectionViewCell
 
 @property(weak,nonatomic) WCCountry* country;
 

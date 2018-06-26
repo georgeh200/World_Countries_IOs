@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tblCountries;
 @property (weak, nonatomic) IBOutlet UIImageView *imgMapAnimation;
-@property (weak, nonatomic) IBOutlet UISearchBar *txtSearch;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *vLoading;
 @property(assign,nonatomic)BOOL scrolling;
 @property(assign,nonatomic)BOOL shouldReloadDataTable;
