@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class WorldCountries;
-@interface MainViewController : UIViewController< UITableViewDataSource ,UITableViewDelegate,UISearchBarDelegate>
+@interface MainViewController : UIViewController< UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tblCountries;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgMapAnimation;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *vLoading;
 @property(assign,nonatomic)BOOL scrolling;

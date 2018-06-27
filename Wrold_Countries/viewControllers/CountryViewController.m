@@ -36,10 +36,14 @@
 -(void)getCountryDetails
 {
     
-   
-   
+    NSDictionary* dic=  [self.country getCountryInfoByCode];
     
+    if(dic!=nil)
+       [self viewDetails:dic];
+   
+  
     [[WorldCountries sharedInstance]getCountryDetails:self.country withSuccess:^(NSDictionary *dic) {
+       
          [self performSelectorOnMainThread:@selector(viewDetails:) withObject:dic waitUntilDone:NO];
     } withFailure:^(NSInteger statusCode) {
         // we can notify the user to connect to get fresh data as current data is offline

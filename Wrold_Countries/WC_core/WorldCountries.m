@@ -84,11 +84,7 @@ withFailure:(void (^)(NSInteger statusCode))failureCallback
              withFailure:(void (^)(NSInteger statusCode))failureCallback
 {
     
-    // get data from local cach
-    NSDictionary* dic=  [country getCountryInfoByCode];
-    
-    if(dic!=nil)
-        successCallback(dic);
+  
     
         
     // refresh data from server
@@ -96,7 +92,7 @@ withFailure:(void (^)(NSInteger statusCode))failureCallback
         
         successCallback(json[0]);
         
-        [self performSelectorInBackground:@selector(saveCountriesFromJson:) withObject:json];
+        [self performSelectorOnMainThread:@selector(saveCountriesFromJson:) withObject:json waitUntilDone:NO];
     } withFailure:^(NSInteger statusCode) {
         // we can view a notification for the user to be connected to get fresh data from server
     }];

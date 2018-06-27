@@ -21,13 +21,13 @@
    
     [super viewDidLoad];
     
-    
+    self.collectionView.dataSource=self;
+    self.collectionView.delegate=self;
    
     self.worldCountries=[WorldCountries sharedInstance];
     
     
-    [self.tblCountries setDelegate:self];
-    [self.tblCountries setDataSource:self];
+  
 
     
     
@@ -59,7 +59,7 @@
     [self.vLoading stopAnimating];
     self.vLoading.hidden=YES;
     if(!self.scrolling)
-    [self.tblCountries reloadData];
+    [self.collectionView reloadData];
     else self.shouldReloadDataTable=YES;
 }
 
@@ -90,7 +90,7 @@
 
 
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+/*- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     self.scrolling=YES;
     [self.view endEditing:YES];
@@ -100,7 +100,7 @@
     if(self.shouldReloadDataTable)
     {
         self.shouldReloadDataTable=NO;
-        [self.tblCountries reloadData];
+        [self.collectionView reloadData];
         
     }
     self.scrolling=NO;
@@ -111,7 +111,7 @@
     if(!decelerate&&self.shouldReloadDataTable)
     {
         self.shouldReloadDataTable=NO;
-        [self.tblCountries reloadData];
+        [self.collectionView reloadData];
         
     }
     if(!decelerate)
@@ -119,56 +119,55 @@
         self.scrolling=NO;
     }
     
-}
+}*/
 
 
 
+#pragma UICollectionViewDataSource
 
-
-
-
-
-
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.worldCountries getFilteredCountriesCount];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     WCCountry* country=[self.worldCountries getCountry: indexPath.row];
+    static NSString *cellIdentifier = @"cellIdentifier";
+    VCountryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    NSString * cellIdentifier = @"cellIdentifier" ;
    
-    VCountryCell * rowCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  
-   
-    [rowCell startWithCountry:country];
     
-    return rowCell;
+    [cell startWithCountry:country];
+    
+    
+    return cell;
 }
 
+#pragma UICollectionViewDelegate
 
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CountryViewController *myViewController = [storyboard instantiateViewControllerWithIdentifier:@"CountryView"];
     myViewController.country=[self.worldCountries getCountry: indexPath.row];
     [self presentViewController:myViewController animated:NO completion:nil];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

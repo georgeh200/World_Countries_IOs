@@ -26,6 +26,7 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXw-qs-Sd2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Mgo-LZ-4lE"/>
                                 </constraints>
@@ -33,13 +34,9 @@
                                     <segue destination="lHW-nV-h0V" kind="embed" id="byJ-fy-63W"/>
                                 </connections>
                             </containerView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="21V-PL-HHT" userLabel="loading">
-                                <rect key="frame" x="0.0" y="324" width="600" height="20"/>
-                                <color key="color" red="0.090196078430000007" green="0.54901960780000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-0s-4QR">
                                 <rect key="frame" x="0.0" y="95" width="375" height="572"/>
-                                <color key="backgroundColor" red="0.059026046190000001" green="1" blue="0.14566510969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Exx-AT-ETj">
                                     <size key="itemSize" width="175" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -47,7 +44,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uVB-zY-EeN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellIdentifier" id="uVB-zY-EeN" customClass="VCountryCell">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -59,7 +56,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-45-hwe">
-                                                    <rect key="frame" x="61" y="121" width="66" height="39"/>
+                                                    <rect key="frame" x="20" y="121" width="135" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -67,9 +64,17 @@
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="imgCountryFlag" destination="Vlz-Rc-W9r" id="kt6-SP-bpc"/>
+                                            <outlet property="lblCountryName" destination="3Bb-45-hwe" id="YZ3-7K-aWY"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="21V-PL-HHT" userLabel="loading">
+                                <rect key="frame" x="0.0" y="324" width="600" height="20"/>
+                                <color key="color" red="0.090196078430000007" green="0.54901960780000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -85,6 +90,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="xDu-0s-4QR" id="vNm-fg-QoZ"/>
                         <outlet property="vLoading" destination="21V-PL-HHT" id="cc4-2w-8Ph"/>
                     </connections>
                 </viewController>
